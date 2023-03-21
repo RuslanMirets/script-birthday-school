@@ -92,12 +92,12 @@ const start = () => {
 start();
 
 // Just timer
-// let i = 1;
-// const timer = () => {
-// 	console.log(i++);
-// 	setTimeout(timer, 1000);
-// };
-// timer();
+let i = 1;
+const timer = () => {
+	console.log(i++);
+	setTimeout(timer, 1000);
+};
+timer();
 
 // Server Datetime
 // const surprise = (cb) => {
