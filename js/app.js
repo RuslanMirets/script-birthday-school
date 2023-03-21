@@ -2,14 +2,17 @@ const text1 = document.querySelectorAll("#tab-1 p");
 const text2 = document.querySelectorAll("#tab-2 p");
 const text3 = document.querySelectorAll("#tab-3 p");
 const text4 = document.querySelectorAll("#tab-4 p");
-const text5 = document.querySelectorAll("#tab-5 p");
-const text6 = document.querySelectorAll("#tab-6 p");
+const text5 = document.querySelectorAll("#tab-5 p:not(.links)");
+const text6 = document.querySelectorAll("#tab-6 p:not(.links)");
 
-const list1 = document.querySelectorAll("#tab-1 li");
-const list2 = document.querySelectorAll("#tab-2 li");
-const list3 = document.querySelectorAll("#tab-3 li");
-// const arrayWords = ["ци", "фро", "вой", "ри", "су", "нок"];
-const arrayWords = ["WORD 1", "WORD 2", "WORD 3", "WORD 4", "WORD 5", "WORD 6"];
+const linkInText5 = document.querySelectorAll("#tab-5 p a");
+const linkInText6 = document.querySelectorAll("#tab-6 p a");
+
+const list2 = document.querySelectorAll("#tab-2 ul li");
+const list3 = document.querySelectorAll("#tab-3 ul li");
+const list4 = document.querySelectorAll("#tab-4 ul li");
+const arrayWords = ["ци", "фро", "вой", "ри", "су", "нок"];
+// const arrayWords = ["WORD 1", "WORD 2", "WORD 3", "WORD 4", "WORD 5", "WORD 6"];
 
 const shuffleArray = (array) => {
 	for (let i = array.length - 1; i > 0; i--) {
@@ -21,6 +24,7 @@ const shuffleArray = (array) => {
 
 const replace = (selectors, numWord) => {
 	const randomP = Math.floor(Math.random() * selectors.length) + 1;
+
 	selectors.forEach((item, index) => {
 		if (randomP == index + 1) {
 			const textArray = item.textContent.split(" ");
@@ -32,37 +36,81 @@ const replace = (selectors, numWord) => {
 			setTimeout(() => {
 				textArray.splice(random, 1);
 				item.textContent = textArray.join(" ");
-			}, 2000);
+			}, 2000); // Change to 600000 ms
 		}
 	});
 };
 
-shuffleArray(arrayWords);
+const start = () => {
+	shuffleArray(arrayWords);
 
-replace(text1, 0);
-replace(text2, 1);
-replace(text3, 2);
+	replace(text1, 0);
 
-let regexp = new RegExp("(" + arrayWords.join("|") + ")", "ig");
-$("p").each(function (num, elem) {
-	let text = $(elem).text();
-	text = text.replace(regexp, '<span class="highlight">$&</span>');
-	$(elem).html(text);
-});
+	Math.floor(Math.random() * 2) + 1 == 1
+		? replace(text2, 1)
+		: replace(list2, 1);
 
-setInterval(() => {
-	setTimeout(() => {
-		shuffleArray(arrayWords);
+	Math.floor(Math.random() * 2) + 1 == 1
+		? replace(text3, 2)
+		: replace(list3, 2);
 
-		replace(text1, 0);
-		replace(text2, 1);
-		replace(text3, 2);
+	Math.floor(Math.random() * 2) + 1 == 1
+		? replace(text4, 3)
+		: replace(list4, 3);
 
-		let regexp = new RegExp("(" + arrayWords.join("|") + ")", "ig");
-		$("p").each(function (num, elem) {
-			let text = $(elem).text();
-			text = text.replace(regexp, '<span class="highlight">$&</span>');
-			$(elem).html(text);
-		});
-	}, 100);
-}, 2100);
+	Math.floor(Math.random() * 2) + 1 == 1
+		? replace(text5, 4)
+		: replace(linkInText5, 4);
+
+	Math.floor(Math.random() * 2) + 1 == 1
+		? replace(text6, 5)
+		: replace(linkInText6, 5);
+
+	let regexp = new RegExp(" (" + arrayWords.join("|") + ")", "ig");
+	let regexp2 = new RegExp("(" + arrayWords.join("|") + ") ", "ig");
+	$("p:not(.links)").each(function (num, elem) {
+		let text = $(elem).text();
+		text = text.replace(regexp, '<span class="highlight">$&</span>');
+		text = text.replace(regexp2, '<span class="highlight">$&</span>');
+		$(elem).html(text);
+	});
+	$("li").each(function (num, elem) {
+		let text = $(elem).text();
+		text = text.replace(regexp, '<span class="highlight">$&</span>');
+		text = text.replace(regexp2, '<span class="highlight">$&</span>');
+		$(elem).html(text);
+	});
+	$("p a").each(function (num, elem) {
+		let text = $(elem).text();
+		text = text.replace(regexp, '<span class="highlight">$&</span>');
+		text = text.replace(regexp2, '<span class="highlight">$&</span>');
+		$(elem).html(text);
+	});
+
+	setTimeout(start, 3000); // Change to 900000 ms (10 min + 5 min)
+};
+start();
+
+// Just timer
+// let i = 1;
+// const timer = () => {
+// 	console.log(i++);
+// 	setTimeout(timer, 1000);
+// };
+// timer();
+
+// Server Datetime
+// const surprise = (cb) => {
+// 	(function loop() {
+// 		var now = new Date();
+// 		if (now.getSeconds() == 30) {
+// 			cb();
+// 		}
+// 		now = new Date();
+// 		var delay = 2100 - (now % 2100);
+// 		setTimeout(loop, delay);
+// 	})();
+// };
+// surprise(() => {
+// 	console.log();
+// });
