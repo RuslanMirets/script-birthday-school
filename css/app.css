@@ -8,12 +8,24 @@ ul {
 	padding-left: 20px;
 }
 
+.container {
+	max-width: 1200px;
+	padding: 0 15px;
+	margin: 0 auto;
+}
+
 .section {
+	padding-top: 40px;
+}
+
+.timer {
+	margin-bottom: 30px;
+}
+
+.tabs {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 20px;
-	max-width: 1200px;
-	margin: 0 auto;
 }
 
 .tab {

@@ -66,26 +66,20 @@ const start = () => {
 		? replace(text6, 5)
 		: replace(linkInText6, 5);
 
+	// Highlight
 	let regexp = new RegExp(" (" + arrayWords.join("|") + ")", "ig");
 	let regexp2 = new RegExp("(" + arrayWords.join("|") + ") ", "ig");
-	$("p:not(.links)").each(function (num, elem) {
-		let text = $(elem).text();
-		text = text.replace(regexp, '<span class="highlight">$&</span>');
-		text = text.replace(regexp2, '<span class="highlight">$&</span>');
-		$(elem).html(text);
-	});
-	$("li").each(function (num, elem) {
-		let text = $(elem).text();
-		text = text.replace(regexp, '<span class="highlight">$&</span>');
-		text = text.replace(regexp2, '<span class="highlight">$&</span>');
-		$(elem).html(text);
-	});
-	$("p a").each(function (num, elem) {
-		let text = $(elem).text();
-		text = text.replace(regexp, '<span class="highlight">$&</span>');
-		text = text.replace(regexp2, '<span class="highlight">$&</span>');
-		$(elem).html(text);
-	});
+	const highlight = (selector) => {
+		$(selector).each(function (num, elem) {
+			let text = $(elem).text();
+			text = text.replace(regexp, '<span class="highlight">$&</span>');
+			text = text.replace(regexp2, '<span class="highlight">$&</span>');
+			$(elem).html(text);
+		});
+	};
+	highlight("p:not(.links)");
+	highlight("li");
+	highlight("p a");
 
 	setTimeout(start, 3000); // Change to 900000 ms (10 min + 5 min)
 };
@@ -94,7 +88,7 @@ start();
 // Just timer
 let i = 1;
 const timer = () => {
-	console.log(i++);
+	document.querySelector(".timer b").textContent = i++;
 	setTimeout(timer, 1000);
 };
 timer();
