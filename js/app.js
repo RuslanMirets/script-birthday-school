@@ -1,10 +1,15 @@
-const text1 = document.querySelectorAll("#tab-1 p");
-const text2 = document.querySelectorAll("#tab-2 p");
-const text3 = document.querySelectorAll("#tab-3 p");
-const text4 = document.querySelectorAll("#tab-4 p");
+// const text1 = document.querySelectorAll("#tab-1 p:not(:has(a))");
+const text1 = document.querySelectorAll("#tab-1 p:not(.links)");
+const text2 = document.querySelectorAll("#tab-2 p:not(.links)");
+const text3 = document.querySelectorAll("#tab-3 p:not(.links)");
+const text4 = document.querySelectorAll("#tab-4 p:not(.links)");
 const text5 = document.querySelectorAll("#tab-5 p:not(.links)");
 const text6 = document.querySelectorAll("#tab-6 p:not(.links)");
 
+const linkInText1 = document.querySelectorAll("#tab-1 p a");
+const linkInText2 = document.querySelectorAll("#tab-2 p a");
+const linkInText3 = document.querySelectorAll("#tab-3 p a");
+const linkInText4 = document.querySelectorAll("#tab-4 p a");
 const linkInText5 = document.querySelectorAll("#tab-5 p a");
 const linkInText6 = document.querySelectorAll("#tab-6 p a");
 
@@ -44,19 +49,27 @@ const replace = (selectors, numWord) => {
 const start = () => {
 	shuffleArray(arrayWords);
 
-	replace(text1, 0);
-
 	Math.floor(Math.random() * 2) + 1 == 1
+		? replace(text1, 0)
+		: replace(linkInText1, 0);
+
+	Math.floor(Math.random() * 3) + 1 == 1
 		? replace(text2, 1)
-		: replace(list2, 1);
+		: Math.floor(Math.random() * 3) + 1 == 2
+		? replace(list2, 1)
+		: replace(linkInText2, 1);
 
-	Math.floor(Math.random() * 2) + 1 == 1
+	Math.floor(Math.random() * 3) + 1 == 1
 		? replace(text3, 2)
-		: replace(list3, 2);
+		: Math.floor(Math.random() * 3) + 1 == 2
+		? replace(list3, 2)
+		: replace(linkInText3, 2);
 
-	Math.floor(Math.random() * 2) + 1 == 1
+	Math.floor(Math.random() * 3) + 1 == 1
 		? replace(text4, 3)
-		: replace(list4, 3);
+		: Math.floor(Math.random() * 3) + 1 == 2
+		? replace(list4, 3)
+		: replace(linkInText4, 3);
 
 	Math.floor(Math.random() * 2) + 1 == 1
 		? replace(text5, 4)
