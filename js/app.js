@@ -1,23 +1,21 @@
-// const text1 = document.querySelectorAll("#tab-1 p:not(:has(a))");
-const text1 = document.querySelectorAll("#tab-1 p:not(.links)");
-const text2 = document.querySelectorAll("#tab-2 p:not(.links)");
-const text3 = document.querySelectorAll("#tab-3 p:not(.links)");
-const text4 = document.querySelectorAll("#tab-4 p:not(.links)");
-const text5 = document.querySelectorAll("#tab-5 p:not(.links)");
-const text6 = document.querySelectorAll("#tab-6 p:not(.links)");
+const text1 = $("#tab-1 p:not(:has(a))");
+const text2 = $("#tab-2 p:not(:has(a))");
+const text3 = $("#tab-3 p:not(:has(a))");
+const text4 = $("#tab-4 p:not(:has(a))");
+const text5 = $("#tab-5 p:not(:has(a))");
+const text6 = $("#tab-6 p:not(:has(a))");
 
-const linkInText1 = document.querySelectorAll("#tab-1 p a");
-const linkInText2 = document.querySelectorAll("#tab-2 p a");
-const linkInText3 = document.querySelectorAll("#tab-3 p a");
-const linkInText4 = document.querySelectorAll("#tab-4 p a");
-const linkInText5 = document.querySelectorAll("#tab-5 p a");
-const linkInText6 = document.querySelectorAll("#tab-6 p a");
+const linkInText1 = $("#tab-1 p a");
+const linkInText2 = $("#tab-2 p a");
+const linkInText3 = $("#tab-3 p a");
+const linkInText4 = $("#tab-4 p a");
+const linkInText5 = $("#tab-5 p a");
+const linkInText6 = $("#tab-6 p a");
 
-const list2 = document.querySelectorAll("#tab-2 ul li");
-const list3 = document.querySelectorAll("#tab-3 ul li");
-const list4 = document.querySelectorAll("#tab-4 ul li");
+const list2 = $("#tab-2 ul li");
+const list3 = $("#tab-3 ul li");
+const list4 = $("#tab-4 ul li");
 const arrayWords = ["ци", "фро", "вой", "ри", "су", "нок"];
-// const arrayWords = ["WORD 1", "WORD 2", "WORD 3", "WORD 4", "WORD 5", "WORD 6"];
 
 const shuffleArray = (array) => {
 	for (let i = array.length - 1; i > 0; i--) {
@@ -30,7 +28,7 @@ const shuffleArray = (array) => {
 const replace = (selectors, numWord) => {
 	const randomP = Math.floor(Math.random() * selectors.length) + 1;
 
-	selectors.forEach((item, index) => {
+	selectors.each((index, item) => {
 		if (randomP == index + 1) {
 			const textArray = item.textContent.split(" ");
 			const random = Math.round(Math.random() * textArray.length);
@@ -90,7 +88,7 @@ const start = () => {
 			$(elem).html(text);
 		});
 	};
-	highlight("p:not(.links)");
+	highlight("p:not(:has(a))");
 	highlight("li");
 	highlight("p a");
 
