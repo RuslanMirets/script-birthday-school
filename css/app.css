@@ -36,7 +36,8 @@ ul {
 	border: 1px solid #000;
 }
 
-.highlight {
+span.highlight {
+	/* color: #008000 !important; */
 	color: red;
 	text-transform: uppercase;
 }

@@ -1,3 +1,4 @@
+// Birthday script
 jQuery(document).ready(function ($) {
 	const text1 = $("#tab-1 p:not(:has(a))");
 	const text2 = $("#tab-2 p:not(:has(a))");
@@ -16,6 +17,7 @@ jQuery(document).ready(function ($) {
 	const list2 = $("#tab-2 ul li");
 	const list3 = $("#tab-3 ul li");
 	const list4 = $("#tab-4 ul li");
+
 	const arrayWords = ["ци", "фро", "вой", "ри", "су", "нок"];
 
 	const shuffleArray = (array) => {
@@ -29,17 +31,21 @@ jQuery(document).ready(function ($) {
 	const replace = (selectors, numWord) => {
 		const randomP = Math.floor(Math.random() * selectors.length) + 1;
 
-		selectors.each((index, item) => {
+		selectors.each(function (index) {
 			if (randomP == index + 1) {
-				const textArray = item.textContent.split(" ");
-				const random = Math.round(Math.random() * textArray.length);
+				const text = $(this).text().split(" ");
+				const randomIndex = Math.round(Math.random() * text.length);
 
-				textArray.splice(random, 0, arrayWords[numWord]);
-				item.textContent = textArray.join(" ");
+				text.splice(
+					randomIndex,
+					0,
+					"<span class='highlight'>" + arrayWords[numWord] + "</span>",
+				);
+				$(this).html(text.join(" "));
 
 				setTimeout(() => {
-					textArray.splice(random, 1);
-					item.textContent = textArray.join(" ");
+					text.splice(randomIndex, 1);
+					$(this).html(text.join(" "));
 				}, 2000); // Change to 600000 ms
 			}
 		});
@@ -77,21 +83,6 @@ jQuery(document).ready(function ($) {
 		Math.floor(Math.random() * 2) + 1 == 1
 			? replace(text6, 5)
 			: replace(linkInText6, 5);
-
-		// Highlight
-		let regexp = new RegExp(" (" + arrayWords.join("|") + ")", "ig");
-		let regexp2 = new RegExp("(" + arrayWords.join("|") + ") ", "ig");
-		const highlight = (selector) => {
-			$(selector).each(function (num, elem) {
-				let text = $(elem).text();
-				text = text.replace(regexp, '<span class="highlight">$&</span>');
-				text = text.replace(regexp2, '<span class="highlight">$&</span>');
-				$(elem).html(text);
-			});
-		};
-		highlight("p:not(:has(a))");
-		highlight("li");
-		highlight("p a");
 
 		setTimeout(start, 3000); // Change to 900000 ms (10 min + 5 min)
 	};
