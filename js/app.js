@@ -46,7 +46,7 @@ jQuery(document).ready(function ($) {
 				setTimeout(() => {
 					text.splice(randomIndex, 1);
 					$(this).html(text.join(" "));
-				}, 2000); // Change to 600000 ms
+				}, 1000); // Change to 600000 ms
 			}
 		});
 	};
@@ -84,7 +84,7 @@ jQuery(document).ready(function ($) {
 			? replace(text6, 5)
 			: replace(linkInText6, 5);
 
-		setTimeout(start, 3000); // Change to 900000 ms (10 min + 5 min)
+		setTimeout(start, 1000); // Change to 600000ms
 	};
 	start();
 });
