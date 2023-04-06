@@ -58,3 +58,7 @@ span.highlight {
 	color: #c42353 !important;
 	text-transform: uppercase !important;
 }
+
+.accent {
+	color: purple;
+}

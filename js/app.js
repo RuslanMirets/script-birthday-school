@@ -1,11 +1,11 @@
 // Birthday script
 jQuery(document).ready(function ($) {
-	const text1 = $("#tab-1 p:not(:has(a))");
-	const text2 = $("#tab-2 p:not(:has(a))");
-	const text3 = $("#tab-3 p:not(:has(a))");
-	const text4 = $("#tab-4 p:not(:has(a))");
-	const text5 = $("#tab-5 p:not(:has(a))");
-	const text6 = $("#tab-6 p:not(:has(a))");
+	const text1 = $("#tab-1 p:not(:has(a)):not(.heading.heading-h4)");
+	const text2 = $("#tab-2 p:not(:has(a)):not(.heading.heading-h4)");
+	const text3 = $("#tab-3 p:not(:has(a)):not(.heading.heading-h4)");
+	const text4 = $("#tab-4 p:not(:has(a)):not(.heading.heading-h4)");
+	const text5 = $("#tab-5 p:not(:has(a)):not(.heading.heading-h4)");
+	const text6 = $("#tab-6 p:not(:has(a)):not(.heading.heading-h4)");
 
 	const linkInText1 = $("#tab-1 p a");
 	const linkInText2 = $("#tab-2 p a");
@@ -46,7 +46,7 @@ jQuery(document).ready(function ($) {
 				setTimeout(() => {
 					text.splice(randomIndex, 1);
 					$(this).html(text.join(" "));
-				}, 1000); // Change to 600000 ms
+				}, 10000); // Change to 600000 ms
 			}
 		});
 	};
@@ -84,7 +84,7 @@ jQuery(document).ready(function ($) {
 			? replace(text6, 5)
 			: replace(linkInText6, 5);
 
-		setTimeout(start, 1000); // Change to 600000ms
+		setTimeout(start, 10000); // Change to 600000ms
 	};
 	start();
 });
